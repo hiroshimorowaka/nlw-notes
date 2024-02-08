@@ -1,8 +1,8 @@
 import { ChangeEvent, useState } from "react";
+import { toast } from "sonner";
 import logo from "./assets/logo-nlw-expert.svg";
 import { NewNoteCard } from "./components/new-note-card";
 import { NoteCard } from "./components/note-card";
-
 interface Note {
 	id: string;
 	date: Date;
@@ -30,6 +30,7 @@ export function App() {
 		const notesArray = [newNote, ...notes];
 		setNotes(notesArray);
 		localStorage.setItem("notes", JSON.stringify(notesArray));
+		toast.success("Nota criada com sucesso!");
 	}
 
 	function onNoteDeleted(id: string) {
@@ -39,6 +40,7 @@ export function App() {
 
 		setNotes(notesArray);
 		localStorage.setItem("notes", JSON.stringify(notesArray));
+		toast.success("Nota deletada com sucesso!");
 	}
 
 	function handleSearch(event: ChangeEvent<HTMLInputElement>) {
@@ -53,7 +55,6 @@ export function App() {
 			  )
 			: notes;
 
-	console.log(search);
 	return (
 		<div className="mx-auto max-w-6xl my-12 space-y-6 px-5">
 			<img src={logo} alt="Nlw expert" />

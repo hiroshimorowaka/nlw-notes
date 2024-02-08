@@ -32,7 +32,6 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCardProps) {
 		onNoteCreated(content);
 		setContent("");
 		setShouldShowOnBoarding(true);
-		toast.success("Nota criada com sucesso!");
 	}
 
 	function handleStartRecording() {
@@ -76,6 +75,9 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCardProps) {
 	function handleStopRecording() {
 		speechRecognition?.stop();
 		setIsRecording(false);
+		if (!content) {
+			setShouldShowOnBoarding(true);
+		}
 	}
 
 	function shouldShowSaveButton() {
